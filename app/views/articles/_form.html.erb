@@ -1,4 +1,5 @@
-<%= form_for(article) do |f| %>
+<form class="new_article" id="new_article" action='<%= action%>' data-remote="true" method='<%= method %>'>
+
   <% if article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -12,16 +13,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <label for="article_title">Title</label>
+    <input value="<%= article.title%>" type="text" name="article[title]" id="article_title">
   </div>
 
   <div class="field">
-    <%= f.label :text %>
-    <%= f.text_area :text %>
+    <label for="article_text">Text</label>
+    <textarea name="article[text]" id="article_text"><%= article.text%></textarea>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <input type="submit" name="commit" value="<%= btn_name %>" data-disable-with="Create Article">
   </div>
-<% end %>
+</form>
