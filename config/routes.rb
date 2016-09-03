@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get '/home', to: 'welcome#index', as: 'home'
 
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 end
