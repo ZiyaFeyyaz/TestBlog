@@ -1,7 +1,7 @@
-<form class="new_article" id="new_article" action='<%= action%>' data-remote="true" method='<%= method %>'>
+<form class="form" id="new_article" action='<%= action%>' data-remote="true" method='<%= method %>'>
 
   <% if article.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="page-header">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
       <ul>
@@ -12,25 +12,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <select name="article[category_id]" id="article_category_id">
+  <div class="form-group">
+    <select class="form-control" name="article[category_id]" id="article_category_id">
       <% Category.all.each do |category| %>
         <option value="<%= category.id %>"><%= category.name %></option>
       <% end %>
     </select>
   </div>
 
-  <div class="field">
-    <label for="article_title">Title</label>
-    <input value="<%= article.title%>" type="text" name="article[title]" id="article_title">
+  <div class="form-group">
+    <label for="article_title" class="control-label">Title</label>
+    <input class="form-control" value="<%= article.title%>" type="text" name="article[title]" id="article_title">
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <label for="article_text">Text</label>
-    <textarea name="article[text]" id="article_text"><%= article.text%></textarea>
+    <textarea class="form-control" rows="3" name="article[text]" id="article_text"><%= article.text%></textarea>
   </div>
 
   <div class="actions">
-    <input type="submit" name="commit" value="<%= btn_name %>" data-disable-with="Create Article">
+    <input class="btn btn-primary pull-right" type="submit" name="commit" value="<%= btn_name %>" data-disable-with="Create Article">
   </div>
 </form>
