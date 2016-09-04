@@ -5,5 +5,8 @@
   <%= @category.name %>
 </p>
 
+<h2>Articles</h2>
+<%= render @category.articles.order(created_at: :desc) %>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
