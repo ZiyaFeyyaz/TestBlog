@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  http_basic_authenticate_with name: "feyyaz", password: "zzz", except: [:index, :show]
+  before_filter :authenticate_user!, except: [:show, :index]
 
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 

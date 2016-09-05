@@ -3,7 +3,7 @@
     <img class="media-object" src="/images/user.png" alt="Author">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">Autor : <%= comment.commenter %></h4>
+    <h4 class="media-heading">Autor : <%= comment.user.blank? ? 'Anonymous' : comment.user.name %></h4>
     <%= comment.body %>
   </div>
   <p>

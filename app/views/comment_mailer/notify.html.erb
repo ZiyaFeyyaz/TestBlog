@@ -5,5 +5,5 @@
 <p><%= @comment.body %></p>
 <p>
   <label>Commenter: </label>
-  <p><%= @comment.commenter %></p>
+  <p><%= @comment.user.blank? ? 'Anonymous' : @comment.user.name %></p>
 </p>
