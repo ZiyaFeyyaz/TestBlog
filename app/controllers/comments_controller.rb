@@ -29,6 +29,7 @@ class CommentsController < ApplicationController
     @comment = @article.comments.create(comment_params)
     if user_signed_in?
       @comment.user = current_user
+      @comment.save!
     end
     CommentMailer.notify(@article, @comment).deliver
     redirect_to article_path(@article), notice: 'Comment was successfully created.'

@@ -24,11 +24,12 @@
 
       <form class="navbar-form navbar-right" role="form">
         <% if user_signed_in? %>
-          <span>Здравствуйте, <%= current_user.email %></span>
-          <button type="submit" class="btn btn-success">Sign in</button>
+          <a href="#">Здравствуйте, <%= current_user.name %></span>
+          &nbsp;
           <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class: "btn btn-danger" %>
         <% else %>
           <%= link_to 'Войти', new_user_session_path, class: "btn btn-success" %>
+          &nbsp;
           <%= link_to 'Зарегистрироваться', new_user_registration_path, class: "btn btn-primary" %>
         <% end %>
       </form>
