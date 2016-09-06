@@ -4,17 +4,27 @@
   "basePath": "http://localhost:3000",
   "apis": [
     {
-      "path": "/welcome.{format}",
+      "path": "/api/v0/welcome.{format}",
       "description": "Welcome"
+    },
+    {
+      "path": "/api/v0/categories.{format}",
+      "description": "Categories controller API"
+    },
+    {
+      "path": "/api/v0/comments.{format}",
+      "description": "Comments controller API"
+    },
+    {
+      "path": "/api/v0/articles.{format}",
+      "description": "Articles controller API"
     }
   ],
   "authorizations": null,
   "info": {
     "title": "Test Blog Sample App",
     "description": "Rails API documention with Swagger UI.",
-    "termsOfServiceUrl": "http://helloreverb.com/terms/",
-    "contact": "apiteam@wordnik.com",
-    "license": "Apache 2.0",
-    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    "termsOfServiceUrl": "http://example.com/terms/",
+    "contact": "apiteam@wordnik.com"
   }
 }

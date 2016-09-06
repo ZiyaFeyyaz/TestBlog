@@ -1,29 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, only: [:destroy]
-  # before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /comments
-  # GET /comments.json
-  # def index
-  #   @comments = Comment.all
-  # end
-
-  # GET /comments/1
-  # GET /comments/1.json
-  # def show
-  # end
-
-  # GET /comments/new
-  # def new
-  #   @comment = Comment.new
-  # end
-
-  # GET /comments/1/edit
-  # def edit
-  # end
-
-  # POST /comments
-  # POST /comments.json
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
@@ -35,8 +12,6 @@ class CommentsController < ApplicationController
     redirect_to article_path(@article), notice: 'Comment was successfully created.'
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
   # def update
   #   respond_to do |format|
   #     if @comment.update(comment_params)
@@ -49,8 +24,6 @@ class CommentsController < ApplicationController
   #   end
   # end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
@@ -58,13 +31,38 @@ class CommentsController < ApplicationController
     redirect_to article_path(@article), notice: 'Comment was successfully destroyed.'
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    # def set_comment
-    #   @comment = Comment.find(params[:id])
-    # end
+# begin Comment API
+  swagger_controller :comments, "Comments controller API"
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  swagger_api :create do
+    summary "Create a new Comment"
+    param :form, :body, :text, "Comment text"
+    param :form, :article_id, :integer, "Article Id"
+    response :created
+    response :unprocessable_entity
+    response :unauthorized
+  end
+
+  # swagger_api :update do
+  #   summary "Updates an existing Comment"
+  #   param :path, :id, :integer, :required, "Comment Id"
+  #   param :form, :body, :text, "Comment text"
+  #   param :form, :article_id, :integer, "Article Id"
+  #   response :unauthorized
+  #   response :not_found
+  #   response :unprocessable_entity
+  # end
+
+  swagger_api :destroy do
+    summary "Delete an existing Comment item"
+    param :path, :id, :integer, :required, "Comment Id"
+    response :unauthorized
+    response :unprocessable_entity
+    response :no_content
+  end
+# end Comment API
+
+  private
     def comment_params
       params.require(:comment).permit(:commenter, :body)
     end
