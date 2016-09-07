@@ -4,15 +4,15 @@
   "basePath": "http://localhost:3000",
   "apis": [
     {
-      "path": "/categories.{format}",
+      "path": "/api/v0/categories.{format}",
       "description": "Categories controller API"
     },
     {
-      "path": "/comments.{format}",
+      "path": "/api/v0/comments.{format}",
       "description": "Comments controller API"
     },
     {
-      "path": "/articles.{format}",
+      "path": "/api/v0/articles.{format}",
       "description": "Articles controller API"
     }
   ],

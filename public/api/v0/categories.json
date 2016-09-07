@@ -33,6 +33,11 @@
               "message": "Created"
             },
             {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
               "code": 401,
               "responseModel": null,
               "message": "Unauthorized"
@@ -138,9 +143,9 @@
           "summary": "Delete existing Category item",
           "responseMessages": [
             {
-              "code": 204,
+              "code": 200,
               "responseModel": null,
-              "message": "No Content"
+              "message": "Ok"
             },
             {
               "code": 401,

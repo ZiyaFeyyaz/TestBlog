@@ -21,6 +21,11 @@
               "message": "Unauthorized"
             },
             {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
               "code": 422,
               "responseModel": null,
               "message": "Unprocessable Entity"
@@ -28,16 +33,16 @@
           ],
           "parameters": [
             {
-              "paramType": "form",
-              "name": "body",
-              "type": "text",
+              "paramType": "path",
+              "name": "article_id",
+              "type": "integer",
               "description": null,
               "required": false
             },
             {
               "paramType": "form",
-              "name": "article_id",
-              "type": "integer",
+              "name": "body",
+              "type": "string",
               "description": null,
               "required": false
             }
@@ -54,14 +59,19 @@
           "summary": "Delete an existing Comment item",
           "responseMessages": [
             {
-              "code": 204,
+              "code": 200,
               "responseModel": null,
-              "message": "No Content"
+              "message": "Ok"
             },
             {
               "code": 401,
               "responseModel": null,
               "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
             },
             {
               "code": 422,
@@ -70,6 +80,13 @@
             }
           ],
           "parameters": [
+            {
+              "paramType": "path",
+              "name": "article_id",
+              "type": "integer",
+              "description": "Article Id",
+              "required": true
+            },
             {
               "paramType": "path",
               "name": "id",

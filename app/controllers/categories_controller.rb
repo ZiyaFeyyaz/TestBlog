@@ -3,6 +3,8 @@ class CategoriesController < ApplicationController
 
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
+  protect_from_forgery
+
   def index
     @categories = Category.all
   end
@@ -47,7 +49,7 @@ class CategoriesController < ApplicationController
     @category.destroy
     respond_to do |format|
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: { success: true }, status: :ok }
     end
   end
 
@@ -86,9 +88,9 @@ class CategoriesController < ApplicationController
   swagger_api :destroy do
     summary "Delete existing Category item"
     param :path, :id, :integer, :required, "Category Id"
+    response :ok
     response :unauthorized
     response :unprocessable_entity
-    response :no_content
   end
 # end Category API
 
