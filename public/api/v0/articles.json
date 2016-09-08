@@ -46,21 +46,21 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "title",
+              "name": "article[title]",
               "type": "string",
               "description": "Title",
               "required": true
             },
             {
               "paramType": "form",
-              "name": "text",
+              "name": "article[text]",
               "type": "string",
               "description": null,
               "required": false
             },
             {
               "paramType": "form",
-              "name": "category_id",
+              "name": "article[category_id]",
               "type": "integer",
               "description": null,
               "required": false
@@ -134,21 +134,21 @@
             },
             {
               "paramType": "form",
-              "name": "title",
+              "name": "article[title]",
               "type": "string",
               "description": "Title",
               "required": true
             },
             {
               "paramType": "form",
-              "name": "text",
+              "name": "article[text]",
               "type": "string",
               "description": null,
               "required": false
             },
             {
               "paramType": "form",
-              "name": "category_id",
+              "name": "article[category_id]",
               "type": "integer",
               "description": null,
               "required": false

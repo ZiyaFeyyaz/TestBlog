@@ -41,7 +41,7 @@
             },
             {
               "paramType": "form",
-              "name": "body",
+              "name": "comment[body]",
               "type": "string",
               "description": null,
               "required": false

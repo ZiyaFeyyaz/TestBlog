@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+  protect_from_forgery
+
   def index
     @articles = Article.all
   end
@@ -23,7 +25,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
+        format.json { render json: @article, status: :created }
       else
         format.html { render :new, status: :ok }
         format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -47,7 +49,7 @@ class ArticlesController < ApplicationController
     @article.destroy
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: { notice: 'Article was successfully destroyed.' }, status: :ok }
     end
   end
 
@@ -68,9 +70,9 @@ class ArticlesController < ApplicationController
 
   swagger_api :create do
     summary "Create new Article"
-    param :form, :title, :string, :required, "Title"
-    param :form, :text, :string, "Text"
-    param :form, :category_id, :integer, "Category Id"
+    param :form, "article[title]", :string, :required, "Title"
+    param :form, "article[text]", :string, "Text"
+    param :form, "article[category_id]", :integer, "Category Id"
     response :created
     response :unprocessable_entity
     response :unauthorized
@@ -79,9 +81,9 @@ class ArticlesController < ApplicationController
   swagger_api :update do
     summary "Update existing Article"
     param :path, :id, :integer, :required, "Article Id"
-    param :form, :title, :string, :required, "Title"
-    param :form, :text, :string, "Text"
-    param :form, :category_id, :integer, "Category Id"
+    param :form, "article[title]", :string, :required, "Title"
+    param :form, "article[text]", :string, "Text"
+    param :form, "article[category_id]", :integer, "Category Id"
     response :unauthorized
     response :not_found
     response :unprocessable_entity

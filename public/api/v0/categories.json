@@ -33,11 +33,6 @@
               "message": "Created"
             },
             {
-              "code": 400,
-              "responseModel": null,
-              "message": "Bad Request"
-            },
-            {
               "code": 401,
               "responseModel": null,
               "message": "Unauthorized"
@@ -51,7 +46,7 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "name",
+              "name": "category[name]",
               "type": "string",
               "description": "Name",
               "required": true
@@ -125,7 +120,7 @@
             },
             {
               "paramType": "form",
-              "name": "name",
+              "name": "category[name]",
               "type": "string",
               "description": "Name",
               "required": true

@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
 
+    p "ZZZ user_signed_in? = #{user_signed_in?}"
     if user_signed_in?
       @comment.user = current_user
       @comment.save!
@@ -47,7 +48,7 @@ class CommentsController < ApplicationController
   swagger_api :create do
     summary "Create a new Comment"
     param :path, :article_id, :integer, "Article Id"
-    param :form, :body, :string, "Comment text"
+    param :form, "comment[body]", :string, "Comment text"
     response :created
     response :not_found
     response :unprocessable_entity
@@ -57,7 +58,7 @@ class CommentsController < ApplicationController
   # swagger_api :update do
   #   summary "Updates an existing Comment"
   #   param :path, :id, :integer, :required, "Comment Id"
-  #   param :form, :body, :text, "Comment text"
+  #   param :form, "comment[body]", :text, "Comment text"
   #   param :form, :article_id, :integer, "Article Id"
   #   response :unauthorized
   #   response :not_found

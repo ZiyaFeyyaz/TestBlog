@@ -21,11 +21,10 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
+        format.json { render json: @category, status: :created }
       else
         format.html { render :new }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -70,7 +69,7 @@ class CategoriesController < ApplicationController
 
   swagger_api :create do
     summary "Create new Category"
-    param :form, :name, :string, :required, "Name"
+    param :form, "category[name]", :string, :required, "Name"
     response :created
     response :unprocessable_entity
     response :unauthorized
@@ -79,7 +78,7 @@ class CategoriesController < ApplicationController
   swagger_api :update do
     summary "Update existing Category"
     param :path, :id, :integer, :required, "Category Id"
-    param :form, :name, :string, :required, "Name"
+    param :form, "category[name]", :string, :required, "Name"
     response :unauthorized
     response :not_found
     response :unprocessable_entity
