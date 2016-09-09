@@ -1,5 +1,17 @@
 <div class="jumbotron" style="margin-top: 90px">
   <h1>Hello, world!</h1>
   <p>Главная страница очередного блога.</p>
-  <p><a href="/articles" class="btn btn-primary btn-lg" role="button">My Blog &raquo;</a></p>
+    <p>
+      <a href="/articles" class="btn btn-primary btn-lg" role="button">My Blog &raquo;</a>
+    </p>
+  </p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+    <%= form_tag welcome_event_path do %>
+      <input type="submit" value="Add Event" class="btn btn-success btn-lg">
+    <% end %>
+  </div>
 </div>
