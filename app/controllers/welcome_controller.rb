@@ -6,6 +6,7 @@ class WelcomeController < ApplicationController
 
   def add_google_calendar_event
     GoogleCalendarAPI.add_event
-    render :index, notice: "Добавлено событие календаря."
+    flash[:success] = "Создано новое событие календаря."
+    render :index
   end
 end

@@ -8,7 +8,7 @@ require 'time'
 class GoogleCalendarAPI
   OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'
   APPLICATION_NAME = 'Test Blog - APP'
-  CLIENT_SECRETS_PATH = 'lib/client_secret.json'
+  CLIENT_SECRETS_PATH = ENV.fetch('CLIENT_SECRETS_PATH')
   CREDENTIALS_PATH = File.join(Dir.home, '.credentials',
                                "calendar-ruby-quickstart.yaml")
   SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR
@@ -38,27 +38,7 @@ class GoogleCalendarAPI
   end
 
   def self.add_event
-    start_time = Time.zone.now.to_a
-    (0..1).each { |i| start_time[i] = 0 }
-    start_time[2] = 13
-    end_time = start_time
-    end_time[2] = 14
-
-    start_time = Time.local(*start_time).iso8601
-    end_time = Time.local(*end_time).iso8601
-
-    event = 
-      Google::Apis::CalendarV3::Event.new ({
-        summary: 'Test Blog Event',
-        location: 'Ростов-на-Дону, ул. города Волос, дом, 135',
-        description: 'Обед, перерыв, отдых...',
-        start: {
-          date_time: start_time
-        },
-        end: {
-          date_time: end_time,
-        },
-      })
+    event = new_event
 
     # Initialize the API
     service = Google::Apis::CalendarV3::CalendarService.new
@@ -67,5 +47,28 @@ class GoogleCalendarAPI
 
     result = service.insert_event(CALENDAR_ID, event)
     puts "Event created: #{result.html_link}"
+  end
+
+  private
+
+  def self.new_event
+    time = Time.zone.now.tomorrow.to_a
+    (0..1).each { |i| time[i] = 0 }
+    time[2] = 13
+    start_time = Time.zone.local(*time).iso8601
+    time[2] = 14
+    end_time = Time.zone.local(*time).iso8601
+
+    Google::Apis::CalendarV3::Event.new ({
+      summary: 'Test Blog Event',
+      location: 'Ростов-на-Дону, ул. города Волос, дом, 135',
+      description: 'Обед, перерыв, отдых...',
+      start: {
+        date_time: start_time
+      },
+      end: {
+        date_time: end_time,
+      },
+    })
   end
 end
