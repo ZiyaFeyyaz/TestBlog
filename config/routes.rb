@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get '/home', to: 'welcome#index', as: 'home'
 
-  post 'welcome/event', to: 'welcome#add_google_calendar_event'
+  post 'welcome/add_event', to: 'welcome#add_google_calendar_event'
+  post 'welcome/delete_event', to: 'welcome#delete_google_calendar_event'
 
   resources :categories
   resources :articles do

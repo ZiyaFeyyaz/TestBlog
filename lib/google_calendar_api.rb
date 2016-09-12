@@ -37,16 +37,24 @@ class GoogleCalendarAPI
     credentials
   end
 
+  # Initialize the API
+  SERVICE = Google::Apis::CalendarV3::CalendarService.new
+  SERVICE.client_options.application_name = APPLICATION_NAME
+  SERVICE.authorization = authorize
+
   def self.add_event
     event = new_event
-
-    # Initialize the API
-    service = Google::Apis::CalendarV3::CalendarService.new
-    service.client_options.application_name = APPLICATION_NAME
-    service.authorization = authorize
-
-    result = service.insert_event(CALENDAR_ID, event)
+    result = SERVICE.insert_event(CALENDAR_ID, event)
     puts "Event created: #{result.html_link}"
+    event = Event.create event_id: result.id
+  end
+
+  def self.delete_event
+    event = Event.all.first
+    result = SERVICE.delete_event(CALENDAR_ID, event.event_id)
+    if result.blank?
+      event.destroy
+    end
   end
 
   private

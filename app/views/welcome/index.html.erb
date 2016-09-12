@@ -9,8 +9,12 @@
 
 <div class="container">
   <div class="row">
-    <%= form_tag welcome_event_path do %>
+    <%= form_tag welcome_add_event_path, style: 'display: inline;' do %>
       <input type="submit" value="Add Event" class="btn btn-success btn-lg">
+    <% end %>
+
+    <%= form_tag welcome_delete_event_path, style: 'display: inline;' do %>
+      <input type="submit" value="Delete Event" class="btn btn-danger btn-lg">
     <% end %>
   </div>
 </div>
