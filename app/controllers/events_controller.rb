@@ -1,4 +1,8 @@
+require 'google_calendar_api'
+
 class EventsController < ApplicationController
+  # before_filter :authenticate_user!, except: [:show, :index]
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
@@ -21,14 +25,15 @@ class EventsController < ApplicationController
   def edit
   end
 
-  # POST /events
-  # POST /events.json
   def create
     @event = Event.new(event_params)
+    calendar_event = GoogleCalendarAPI.new_event(@event)
+    event_id = GoogleCalendarAPI.add_event calendar_event
+    @event.event_id = event_id
 
     respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+      if @event.event_id.present? && @event.save
+        format.html { redirect_to @event, success: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }

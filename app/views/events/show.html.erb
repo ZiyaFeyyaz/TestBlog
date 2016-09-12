@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-success pull-right" %>
+  <h1><%= @event.summary %></h1>
+</div>
 
 <p>
   <strong>Summary:</strong>
@@ -17,13 +20,12 @@
 
 <p>
   <strong>Start time:</strong>
-  <%= @event.start_time %>
+  <%= l @event.start_time %>
 </p>
 
 <p>
   <strong>End time:</strong>
-  <%= @event.end_time %>
+  <%= l @event.end_time %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', events_path, class: "btn btn-primary pull-right" %>

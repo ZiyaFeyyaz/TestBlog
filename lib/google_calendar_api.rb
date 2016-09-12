@@ -42,11 +42,10 @@ class GoogleCalendarAPI
   SERVICE.client_options.application_name = APPLICATION_NAME
   SERVICE.authorization = authorize
 
-  def self.add_event
-    event = new_event
+  def self.add_event(event)
     result = SERVICE.insert_event(CALENDAR_ID, event)
     puts "Event created: #{result.html_link}"
-    event = Event.create event_id: result.id
+    result.id
   end
 
   def self.delete_event
@@ -57,25 +56,16 @@ class GoogleCalendarAPI
     end
   end
 
-  private
-
-  def self.new_event
-    time = Time.zone.now.tomorrow.to_a
-    (0..1).each { |i| time[i] = 0 }
-    time[2] = 13
-    start_time = Time.zone.local(*time).iso8601
-    time[2] = 14
-    end_time = Time.zone.local(*time).iso8601
-
+  def self.new_event(event)
     Google::Apis::CalendarV3::Event.new ({
-      summary: 'Test Blog Event',
-      location: 'Ростов-на-Дону, ул. города Волос, дом, 135',
-      description: 'Обед, перерыв, отдых...',
+      summary: event.summary,
+      location: event.location,
+      description: event.description,
       start: {
-        date_time: start_time
+        date_time: event.start_time.iso8601
       },
       end: {
-        date_time: end_time,
+        date_time: event.end_time.iso8601,
       },
     })
   end
