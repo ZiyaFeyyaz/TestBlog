@@ -11,7 +11,19 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <label for="article_title" class="control-label">Title</label>
+    <input class="form-control" value="<%= article.title%>" type="text" name="article[title]" id="article_title">
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+  
+  <div class="actions">
+    <input class="btn btn-primary pull-right" type="submit" name="commit" value="<%= btn_name %>" data-disable-with="Create Article">
+  </div>
+</form>
