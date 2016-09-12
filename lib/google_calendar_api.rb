@@ -48,12 +48,8 @@ class GoogleCalendarAPI
     result.id
   end
 
-  def self.delete_event
-    event = Event.all.first
-    result = SERVICE.delete_event(CALENDAR_ID, event.event_id)
-    if result.blank?
-      event.destroy
-    end
+  def self.delete_event(event)
+    SERVICE.delete_event(CALENDAR_ID, event.event_id)
   end
 
   def self.new_event(event)
