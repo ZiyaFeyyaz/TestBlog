@@ -1,6 +1,9 @@
-<h1>Editing Event</h1>
+<div class="page-header">
+  <h1>Editing Event</h1>
+</div>
 
 <%= render 'form', event: @event %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Show', @event, class: "btn btn-success pull-left" %> |
+&nbsp;
+<%= link_to 'Back', events_path, class: "btn btn-danger" %>

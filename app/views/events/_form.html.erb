@@ -12,18 +12,33 @@
   <% end %>
 
   <div class="form-group">
-    <label for="article_title" class="control-label">Title</label>
-    <input class="form-control" value="<%= article.title%>" type="text" name="article[title]" id="article_title">
+    <%= f.label :summary %>
+    <%= f.text_field :summary, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :location %>
+    <%= f.text_field :location, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <textarea class="form-control" rows="3" name="event[description]" id="event_description">
+      <%= event.description%>
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_time %>
+    <%= f.datetime_select :end_time, class:"form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class:"btn btn-primary pull-right" %>
   </div>
 <% end %>
-
-
-  
-  <div class="actions">
-    <input class="btn btn-primary pull-right" type="submit" name="commit" value="<%= btn_name %>" data-disable-with="Create Article">
-  </div>
-</form>

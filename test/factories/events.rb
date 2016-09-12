@@ -1,5 +1,9 @@
 FactoryGirl.define do
   factory :event do
-    event_id "MyString"
+    summary "MyString"
+    location "MyString"
+    description "MyString"
+    start_time "2016-09-12 18:02:05"
+    end_time "2016-09-12 18:02:05"
   end
 end
